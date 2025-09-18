@@ -532,53 +532,89 @@ ol li {
       <div class="section-content">
         
         <div class="warning">
-          <h4>Versão Mobile:</h4>
-          <p>Interface otimizada para smartphone com os mesmos recursos do desktop.</p>
+          <h4>IMPORTANTE - Versão Mobile:</h4>
+          <p>A instalação no celular é mais simples que no desktop. Você vai criar o mesmo sistema, mas com interface otimizada para smartphone.</p>
         </div>
 
         <div class="step">
-          <h3><span class="step-number">1</span>Baixar arquivos mobile</h3>
-          <p>Use o botão "Baixar Versão Mobile" no topo desta página.</p>
+          <h3><span class="step-number">1</span>Baixar os arquivos mobile</h3>
+          <p>Use o botão "Baixar Versão Mobile" no topo desta página</p>
+          <p>Extraia os arquivos em uma pasta no seu computador (você ainda precisará do computador para a configuração inicial)</p>
         </div>
 
         <div class="step">
-          <h3><span class="step-number">2</span>Instalar no Apps Script</h3>
-          <p>Siga os mesmos passos do PASSO 1, mas usando os arquivos mobile:</p>
-          <ul>
-            <li>Cole o Codigo.gs da versão mobile</li>
-            <li>Adicione o index.html da versão mobile</li>
-            <li>Autorize e publique o sistema</li>
-          </ul>
+          <h3><span class="step-number">2</span>Configurar no Google Apps Script</h3>
+          <ol>
+            <li>Entre no <a href="https://script.google.com" target="_blank" class="highlight">script.google.com</a></li>
+            <li>Crie um <span class="highlight">"Novo projeto"</span></li>
+            <li>Apague o código padrão e cole o conteúdo do arquivo <span class="highlight">Codigo.gs</span> da versão mobile</li>
+            <li>Adicione um novo arquivo HTML</li>
+            <li>Cole o conteúdo do arquivo <span class="highlight">index.html</span> da versão mobile</li>
+            <li>Salve o projeto como <span class="highlight">"Sistema Estoque Mobile"</span></li>
+          </ol>
         </div>
 
         <div class="step">
-          <h3><span class="step-number">3</span>Usar no celular</h3>
-          <p>Abra o link no navegador do celular e adicione aos favoritos.</p>
+          <h3><span class="step-number">3</span>Autorizar o sistema mobile</h3>
+          <ol>
+            <li>Execute a função <span class="highlight">testarSistema</span></li>
+            <li>Clique em <span class="highlight">"Autorizar"</span> quando solicitado</li>
+            <li>Se aparecer "App não verificado", clique em <span class="highlight">"Avançado"</span></li>
+            <li>Clique em <span class="highlight">"Permitir"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4</span>Publicar o sistema mobile</h3>
+          <ol>
+            <li>Clique em <span class="highlight">"Implantar"</span></li>
+            <li>Selecione <span class="highlight">"Nova implantação"</span></li>
+            <li>Escolha <span class="highlight">"Aplicativo da Web"</span></li>
+            <li>Configure: "Executar como: Eu" e "Acesso: Qualquer pessoa"</li>
+            <li><strong>GUARDE O LINK MOBILE</strong> gerado</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">5</span>Acessar no celular</h3>
+          <ol>
+            <li>Copie o link do seu sistema mobile</li>
+            <li>Abra o link no navegador do seu celular</li>
+            <li>O sistema se adaptará automaticamente à tela pequena</li>
+            <li>Salve o link nos favoritos para acesso rápido</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">6</span>Instalar como aplicativo</h3>
+          <p><strong>No Android (Chrome):</strong></p>
+          <p>Menu → "Adicionar à tela inicial" → Confirmar</p>
+          <p><strong>No iPhone (Safari):</strong></p>
+          <p>Compartilhar → "Adicionar à Tela de Início" → Confirmar</p>
         </div>
 
         <div class="grid">
           <div class="card">
-            <h4>Vantagens Mobile</h4>
-            <ul>
-              <li>Botões otimizados para toque</li>
-              <li>Layout adaptado para tela pequena</li>
-              <li>Carregamento mais rápido</li>
-            </ul>
+            <h4>Diferenças da Versão Mobile</h4>
+            <p>Interface otimizada com botões maiores, layout vertical e navegação simplificada para dispositivos touch.</p>
           </div>
 
           <div class="card">
-            <h4>Mesmas Funções</h4>
-            <ul>
-              <li>Cadastrar produtos</li>
-              <li>Registrar vendas</li>
-              <li>Consultar estoque</li>
-            </ul>
+            <h4>Funcionalidades Incluídas</h4>
+            <p>Cadastrar produtos, registrar vendas, consultar estoque, ver produtos em baixa e fazer ajustes.</p>
           </div>
         </div>
 
         <div class="tip">
-          <h4>DICA:</h4>
-          <p>Você pode usar desktop e mobile simultaneamente - os dados ficam sincronizados na mesma planilha!</p>
+          <h4>DICA IMPORTANTE:</h4>
+          <p>Você pode ter tanto a versão desktop quanto a mobile funcionando ao mesmo tempo. Elas acessam a mesma planilha no Google Drive, então os dados ficam sempre sincronizados!</p>
+        </div>
+
+        <div class="example">
+          <h4>Exemplo de Uso no Dia a Dia:</h4>
+          <p><strong>Manhã:</strong> Verificar produtos em baixa no celular</p>
+          <p><strong>Durante o dia:</strong> Registrar vendas no celular</p>
+          <p><strong>Fim do expediente:</strong> Fazer relatórios no desktop</p>
         </div>
 
       </div>
