@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificado - Sistema de Estoque | Prospera Rio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul-principal: #092040;
+  --azul-secundaria: #00B7D7;
+  --amarelo-acento: #ECC203;
+  --cinza-neutro: #EFF1F3;
+  --azul-escuro: #021738;
+  --branco: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--azul-escuro);
+  background: linear-gradient(135deg, var(--cinza-neutro) 0%, var(--branco) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Certificado */
+.certificado {
+  background: var(--branco);
+  border: 8px solid var(--azul-principal);
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(9, 32, 64, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.certificado::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(236, 194, 3, 0.1) 40%, 
+    rgba(236, 194, 3, 0.2) 50%, 
+    rgba(236, 194, 3, 0.1) 60%, 
+    transparent 70%);
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+
+.certificado-content {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo {
+  height: 50px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.location-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--amarelo-acento);
+  letter-spacing: 2px;
+}
+
+.titulo-certificado {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--azul-principal);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.subtitulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--azul-secundaria);
+  margin-bottom: 40px;
+}
+
+.texto-certificacao {
+  font-size: 20px;
+  color: var(--azul-escuro);
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+.nome-usuario {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--azul-principal);
+  border-bottom: 3px solid var(--amarelo-acento);
+  padding: 15px 30px;
+  margin: 30px auto;
+  display: inline-block;
+  min-width: 400px;
+  background: linear-gradient(135deg, rgba(236, 194, 3, 0.1) 0%, rgba(0, 183, 215, 0.1) 100%);
+  border-radius: 10px;
+}
+
+.curso-info {
+  font-size: 24px;
+  color: var(--azul-principal);
+  font-weight: 600;
+  margin: 30px 0;
+}
+
+.competencias {
+  text-align: left;
+  max-width: 600px;
+  margin: 40px auto;
+  background: var(--cinza-neutro);
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 6px solid var(--azul-secundaria);
+}
+
+.competencias h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azul-principal);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.competencias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.competencias li {
+  margin: 10px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(9, 32, 64, 0.1);
+  font-weight: 600;
+}
+
+.competencias li::before {
+  content: '✓';
+  color: var(--azul-secundaria);
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.data-local {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0 30px;
+  font-size: 18px;
+  color: var(--azul-escuro);
+}
+
+.data, .local {
+  text-align: center;
+  flex: 1;
+}
+
+.data strong, .local strong {
+  color: var(--azul-principal);
+  font-weight: 700;
+}
+
+.assinatura {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 3px solid var(--azul-principal);
+}
+
+.assinatura-nome {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azul-principal);
+  margin-bottom: 5px;
+}
+
+.assinatura-cargo {
+  font-size: 16px;
+  color: var(--azul-escuro);
+  font-weight: 600;
+}
+
+.apoiadores {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 2px solid var(--cinza-neutro);
+  text-align: center;
+}
+
+.apoiadores-texto {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin-bottom: 15px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logos-apoiadores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.logo-apoiador {
+  height: 35px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  filter: grayscale(20%);
+}
+
+.logo-apoiador:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+/* Formulário */
+.form-container {
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 12px 40px rgba(9, 32, 64, 0.08);
+  text-align: center;
+}
+
+.form-container h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--azul-principal);
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin: 25px 0;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 700;
+  color: var(--azul-principal);
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border: 2px solid var(--cinza-neutro);
+  border-radius: 10px;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--azul-secundaria);
+  box-shadow: 0 0 10px rgba(0, 183, 215, 0.3);
+}
+
+.btn-gerar {
+  background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-escuro) 100%);
+  color: var(--branco);
+  padding: 18px 40px;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(9, 32, 64, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px 10px;
+}
+
+.btn-gerar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(9, 32, 64, 0.4);
+}
+
+.btn-download {
+  background: linear-gradient(135deg, var(--amarelo-acento) 0%, #f39c12 100%);
+  color: var(--azul-escuro);
+}
+
+.btn-download:hover {
+  background: linear-gradient(135deg, #f39c12 0%, var(--amarelo-acento) 100%);
+}
+
+.btn-voltar {
+  background: var(--azul-secundaria);
+  color: var(--branco);
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  display: block;
+  text-decoration: none;
+}
+
+.btn-voltar:hover {
+  background: #0099b8;
+  transform: translateY(-2px);
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .certificado {
+    padding: 40px 20px;
+    border-width: 4px;
+  }
+  
+  .titulo-certificado {
+    font-size: 32px;
+    letter-spacing: 1px;
+  }
+  
+  .subtitulo {
+    font-size: 18px;
+  }
+  
+  .nome-usuario {
+    font-size: 24px;
+    min-width: 250px;
+    padding: 10px 20px;
+  }
+  
+  .curso-info {
+    font-size: 18px;
+  }
+  
+  .data-local {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-container {
+    padding: 25px 15px;
+  }
+  
+  .form-container h2 {
+    font-size: 24px;
+  }
+  
+  .logos-apoiadores {
+    gap: 20px;
+  }
+  
+  .logo-apoiador {
+    height: 28px;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  
+  .form-container, .btn-voltar {
+    display: none !important;
+  }
+  
+  .certificado {
+    margin: 0;
+    padding: 40px;
+    border: 6px solid var(--azul-principal);
+    box-shadow: none;
+  }
+  
+  .certificado::before {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Formulário para gerar certificado -->
+  <div id="formulario" class="form-container">
+    <div class="logo-container">
+      <img class="logo" src="https://lh3.googleusercontent.com/d/1x5sNkC9vd7CI78y0xdkWvgoadxPEMcIf=w800" alt="Prospera Rio — Logomarca" />
+      <div class="location-text">MARÉ · JACAREZINHO</div>
+    </div>
+    
+    <h2>Gerar Certificado de Conclusão</h2>
+    <p style="margin-bottom: 30px; color: var(--azul-escuro);">
+      Preencha seus dados para gerar seu certificado oficial do curso Sistema de Estoque Prospera Rio.
+    </p>
+    
+    <form id="formCertificado">
+      <div class="form-group">
+        <label for="nomeCompleto">Nome Completo:</label>
+        <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Digite seu nome completo" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="dataConlusao">Data de Conclusão:</label>
+        <input type="date" id="dataConclusao" name="dataConclusao" required>
+      </div>
+      
+      <button type="submit" class="btn-gerar">Gerar Certificado</button>
+    </form>
+    
+    <a href="index.html" class="btn-voltar">← Voltar ao Tutorial</a>
+  </div>
+
+  <!-- Certificado -->
+  <div id="certificado" class="certificado hidden">
+    <div class="certificado-content">
+      
+      <div class="logo-container">
+        <img class="logo" src="https://lh3.googleusercontent.com/d/1x5sNkC9vd7CI78y0xdkWvgoadxPEMcIf=w800" alt="Prospera Rio — Logomarca" />
+        <div class="location-text">MARÉ · JACAREZINHO</div>
+      </div>
+      
+      <h1 class="titulo-certificado">Certificado</h1>
+      <p class="subtitulo">de Conclusão de Curso</p>
+      
+      <p class="texto-certificacao">
+        Certificamos que
+      </p>
+      
+      <div class="nome-usuario" id="nomeUsuario">
+        [Nome do Aluno]
+      </div>
+      
+      <p class="texto-certificacao">
+        concluiu com êxito o curso
+      </p>
+      
+      <p class="curso-info">
+        <strong>SISTEMA DE ESTOQUE PARA EMPREENDEDORES</strong><br>
+        Prospera Rio - Edição Maré & Jacarezinho
+      </p>
+      
+      <div class="competencias">
+        <h3>Competências Desenvolvidas</h3>
+        <ul>
+          <li>Instalação e configuração do sistema de estoque</li>
+          <li>Cadastro e gestão de produtos e categorias</li>
+          <li>Controle de movimentações (entradas, saídas e ajustes)</li>
+          <li>Análise de relatórios e indicadores financeiros</li>
+          <li>Estratégias para otimização e crescimento do negócio</li>
+          <li>Backup, segurança e compartilhamento de dados</li>
+        </ul>
+      </div>
+      
+      <div class="data-local">
+        <div class="local">
+          <strong>Local:</strong><br>
+          Rio de Janeiro - RJ
+        </div>
+        <div class="data">
+          <strong>Data:</strong><br>
+          <span id="dataCertificado">[Data]</span>
+        </div>
+      </div>
+      
+      <div class="assinatura">
+        <div class="assinatura-nome">Prospera Rio</div>
+        <div class="assinatura-cargo">Programa de Capacitação Empreendedora</div>
+      </div>
+      
+      <!-- Apoiadores/Realizadores -->
+      <div class="apoiadores">
+        <div class="apoiadores-texto">Realização:</div>
+        <div class="logos-apoiadores">
+          <img src="https://logoeps.com/wp-content/uploads/2013/03/sebrae-vector-logo.png" alt="SEBRAE" class="logo-apoiador">
+          <img src="https://institutobr.org.br/wp-content/uploads/2023/05/logo-institutobr-horizontal.png" alt="Instituto BR" class="logo-apoiador">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Botões de ação do certificado -->
+  <div id="acoesCertificado" class="form-container hidden" style="padding: 30px; text-align: center;">
+    <h3 style="color: var(--azul-principal); margin-bottom: 20px;">Seu certificado está pronto!</h3>
+    
+    <button onclick="imprimirCertificado()" class="btn-gerar btn-download">
+      Baixar/Imprimir Certificado
+    </button>
+    
+    <button onclick="voltarFormulario()" class="btn-gerar">
+      Gerar Novo Certificado
+    </button>
+    
+    <a href="index.html" class="btn-voltar">← Voltar ao Tutorial</a>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Definir data padrão como hoje
+  const hoje = new Date();
+  const dataFormatada = hoje.toISOString().split('T')[0];
+  document.getElementById('dataConclusao').value = dataFormatada;
+});
+
+document.getElementById('formCertificado').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const nome = document.getElementById('nomeCompleto').value.trim();
+  const data = document.getElementById('dataConclusao').value;
+  
+  if (!nome || !data) {
+    alert('Por favor, preencha todos os campos obrigatórios.');
+    return;
+  }
+  
+  // Formatar data para exibição
+  const dataObj = new Date(data + 'T00:00:00');
+  const dataFormatada = dataObj.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  });
+  
+  // Preencher certificado
+  document.getElementById('nomeUsuario').textContent = nome.toUpperCase();
+  document.getElementById('dataCertificado').textContent = dataFormatada;
+  
+  // Mostrar certificado
+  document.getElementById('formulario').classList.add('hidden');
+  document.getElementById('certificado').classList.remove('hidden');
+  document.getElementById('acoesCertificado').classList.remove('hidden');
+  
+  // Scroll para o certificado
+  document.getElementById('certificado').scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
+});
+
+function imprimirCertificado() {
+  // Ocultar botões antes de imprimir
+  document.getElementById('acoesCertificado').style.display = 'none';
+  
+  // Imprimir
+  window.print();
+  
+  // Mostrar botões novamente após imprimir
+  setTimeout(() => {
+    document.getElementById('acoesCertificado').style.display = 'block';
+  }, 1000);
+}
+
+function voltarFormulario() {
+  document.getElementById('certificado').classList.add('hidden');
+  document.getElementById('acoesCertificado').classList.add('hidden');
+  document.getElementById('formulario').classList.remove('hidden');
+  
+  // Limpar formulário
+  document.getElementById('formCertificado').reset();
+  
+  // Redefinir data padrão
+  const hoje = new Date();
+  const dataFormatada = hoje.toISOString().split('T')[0];
+  document.getElementById('dataConclusao').value = dataFormatada;
+  
+  // Scroll para o topo
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Animações suaves
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+// Aplicar animações
+document.querySelectorAll('.form-container, .certificado').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

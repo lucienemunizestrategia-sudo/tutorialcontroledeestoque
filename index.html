@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial - Sistema de Estoque | Prospera Rio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul-principal: #092040;
+  --azul-secundaria: #00B7D7;
+  --amarelo-acento: #ECC203;
+  --cinza-neutro: #EFF1F3;
+  --azul-escuro: #021738;
+  --branco: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--azul-escuro);
+  background: linear-gradient(135deg, var(--cinza-neutro) 0%, var(--branco) 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-escuro) 100%);
+  color: var(--branco);
+  padding: 40px 0;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(9, 32, 64, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 60px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.location-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--amarelo-acento);
+  letter-spacing: 2px;
+}
+
+.header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.header .subtitle {
+  font-size: 28px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Download Box */
+.download-box {
+  background: var(--amarelo-acento);
+  color: var(--azul-escuro);
+  padding: 30px;
+  border-radius: 20px;
+  margin: 40px 0;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(236, 194, 3, 0.3);
+}
+
+.download-box h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.download-btn {
+  display: inline-block;
+  background: var(--azul-principal);
+  color: var(--branco);
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(9, 32, 64, 0.3);
+}
+
+.download-btn:hover {
+  background: var(--azul-escuro);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(9, 32, 64, 0.4);
+}
+
+/* Main Content */
+.main-content {
+  padding: 40px 0;
+}
+
+.section {
+  background: var(--branco);
+  margin: 40px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(9, 32, 64, 0.08);
+}
+
+.section-header {
+  background: var(--azul-principal);
+  color: var(--branco);
+  padding: 30px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-header .icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  color: var(--amarelo-acento);
+}
+
+.section-content {
+  padding: 40px;
+}
+
+.step {
+  margin: 30px 0;
+  padding: 25px;
+  background: var(--cinza-neutro);
+  border-radius: 15px;
+  border-left: 6px solid var(--azul-secundaria);
+}
+
+.step h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--azul-principal);
+  margin-bottom: 15px;
+}
+
+.step-number {
+  display: inline-block;
+  background: var(--amarelo-acento);
+  color: var(--azul-escuro);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  font-weight: 700;
+  margin-right: 15px;
+}
+
+.highlight {
+  background: var(--amarelo-acento);
+  color: var(--azul-escuro);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.highlight:hover {
+  background: var(--azul-secundaria);
+  color: var(--branco);
+}
+
+.warning {
+  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+  border: 2px solid #f39c12;
+  color: #856404;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.warning h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tip {
+  background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+  border: 2px solid var(--azul-secundaria);
+  color: var(--azul-escuro);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.tip h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--azul-principal);
+}
+
+.example {
+  background: var(--branco);
+  border: 2px solid var(--cinza-neutro);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.example h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--azul-secundaria);
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.card {
+  background: var(--branco);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(9, 32, 64, 0.1);
+  border: 2px solid var(--cinza-neutro);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(9, 32, 64, 0.15);
+  border-color: var(--azul-secundaria);
+}
+
+.card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--azul-principal);
+  margin-bottom: 15px;
+}
+
+.footer {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  text-align: center;
+  padding: 40px 0;
+  margin-top: 60px;
+}
+
+.footer h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--amarelo-acento);
+}
+
+ul {
+  padding-left: 25px;
+  margin: 15px 0;
+}
+
+li {
+  margin: 8px 0;
+}
+
+ol {
+  padding-left: 25px;
+  margin: 15px 0;
+}
+
+ol li {
+  margin: 12px 0;
+  font-weight: 600;
+}
+
+.code-block {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  margin: 15px 0;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .header h1 {
+    font-size: 32px;
+  }
+  
+  .header .subtitle {
+    font-size: 22px;
+  }
+  
+  .section-header h2 {
+    font-size: 26px;
+  }
+  
+  body {
+    font-size: 18px;
+  }
+  
+  .logo-container {
+    gap: 10px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="logo-container">
+      <img id="logoTopo" class="logo" src="https://lh3.googleusercontent.com/d/1x5sNkC9vd7CI78y0xdkWvgoadxPEMcIf=w800" alt="Prospera Rio — Logomarca" />
+      <div class="location-text">MARÉ · JACAREZINHO</div>
+    </div>
+    <h1>Sistema de Estoque</h1>
+    <p class="subtitle">Tutorial Completo para Empreendedores</p>
+  </div>
+</header>
+
+<div class="container">
+  
+  <div class="download-box">
+    <h2>Baixar Arquivos do Sistema</h2>
+    <p>Escolha a versão adequada para seu dispositivo:</p>
+    
+    <div class="grid" style="margin: 30px 0; gap: 20px;">
+      
+      <!-- Versão Desktop -->
+      <div style="text-align: center;">
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 600; color: var(--azul-escuro); margin-bottom: 15px;">
+          Versão Desktop/Notebook
+        </h3>
+        <a href="https://drive.google.com/file/d/1SLGg4YpPJ7Qan3M-rH75AMfMr4XIdi6n/view?usp=sharing" class="download-btn" target="_blank">
+          Baixar Sistema Completo (.zip)
+        </a>
+        <p style="margin-top: 15px; font-size: 16px;">
+          <strong>O arquivo contém:</strong> Codigo.gs + index.html
+        </p>
+      </div>
+
+      <!-- Versão Mobile -->
+      <div style="text-align: center;">
+        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 600; color: var(--azul-escuro); margin-bottom: 15px;">
+          Versão Mobile/Celular
+        </h3>
+        <a href="https://drive.google.com/file/d/1Jfz6mzlRAgMoVaCW9oLsDJ-1ABMNz6zV/view?usp=sharing" class="download-btn" target="_blank">
+          Baixar Versão Mobile (.zip)
+        </a>
+        <p style="margin-top: 15px; font-size: 16px;">
+          <strong>O arquivo contém:</strong> Codigo.gs + index.html otimizado para celular
+        </p>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <!-- Seção 1: Introdução -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">■</div>
+        <h2>O que é este Sistema?</h2>
+      </div>
+      <div class="section-content">
+        <p>O Sistema de Estoque Prospera Rio é uma ferramenta <span class="highlight">100% gratuita</span> desenvolvida especialmente para empreendedores da Maré e Jacarezinho.</p>
+        
+        <div class="grid">
+          <div class="card">
+            <h4>Controle Total</h4>
+            <p>Gerencie todos os seus produtos em um só lugar</p>
+          </div>
+          <div class="card">
+            <h4>Relatórios Automáticos</h4>
+            <p>Veja quanto dinheiro você tem em estoque</p>
+          </div>
+          <div class="card">
+            <h4>Alertas Inteligentes</h4>
+            <p>Saiba quando um produto está acabando</p>
+          </div>
+          <div class="card">
+            <h4>Funciona em Qualquer Lugar</h4>
+            <p>Celular, tablet ou computador</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção 2: Instalação -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">●</div>
+        <h2>PASSO 1: Instalação do Sistema</h2>
+      </div>
+      <div class="section-content">
+        
+        <div class="warning">
+          <h4>IMPORTANTE - Antes de começar:</h4>
+          <p>Você precisa ter uma conta do Gmail (Google). Se não tem, crie uma gratuitamente em gmail.com</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">1</span>Baixar os arquivos</h3>
+          <p>Clique no botão amarelo no topo desta página para baixar o arquivo .zip</p>
+          <p>Extraia (descompacte) os arquivos em uma pasta no seu computador</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2</span>Abrir o Google Apps Script</h3>
+          <ol>
+            <li>Entre no seu Gmail</li>
+            <li>Clique nos 9 pontinhos no canto superior direito</li>
+            <li>Procure por <span class="highlight">"Apps Script"</span></li>
+            <li>Se não encontrar, digite na barra do navegador: <a href="https://script.google.com" target="_blank" class="highlight">script.google.com</a></li>
+            <li>Clique em <span class="highlight">"Novo projeto"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">3</span>Instalar o código principal</h3>
+          <ol>
+            <li>Apague todo o código que já estiver na tela</li>
+            <li>Abra o arquivo <span class="highlight">Codigo.gs</span> que você baixou</li>
+            <li>Copie todo o conteúdo (Ctrl+A, depois Ctrl+C)</li>
+            <li>Cole no Apps Script (Ctrl+V)</li>
+            <li>Clique em <span class="highlight">"Salvar"</span> (Ctrl+S)</li>
+            <li>Dê um nome para o projeto: <span class="highlight">"Sistema Estoque - [Seu Nome]"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4</span>Adicionar a interface (HTML)</h3>
+          <ol>
+            <li>Clique no ícone <span class="highlight">"+"</span> ao lado de "Arquivos"</li>
+            <li>Selecione <span class="highlight">"Arquivo HTML"</span></li>
+            <li>Nome do arquivo: <span class="highlight">index</span></li>
+            <li>Apague todo o conteúdo que aparecer</li>
+            <li>Abra o arquivo <span class="highlight">index.html</span> que você baixou</li>
+            <li>Copie todo o conteúdo e cole no Apps Script</li>
+            <li>Salve novamente</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">5</span>Autorizar o sistema</h3>
+          <ol>
+            <li>No código principal, encontre a função <span class="highlight">testarSistema</span></li>
+            <li>Clique em <span class="highlight">"Executar"</span></li>
+            <li><strong>IMPORTANTE:</strong> Vai pedir permissões - clique em <span class="highlight">"Autorizar"</span></li>
+            <li>Se aparecer "App não verificado", clique em <span class="highlight">"Avançado"</span></li>
+            <li>Depois clique em <span class="highlight">"Ir para [nome do projeto]"</span></li>
+            <li>Clique em <span class="highlight">"Permitir"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">6</span>Publicar seu sistema</h3>
+          <ol>
+            <li>Clique em <span class="highlight">"Implantar"</span> (canto superior direito)</li>
+            <li>Selecione <span class="highlight">"Nova implantação"</span></li>
+            <li>Clique no ícone de engrenagem e escolha <span class="highlight">"Aplicativo da Web"</span></li>
+            <li>Configurações:
+              <ul>
+                <li><strong>Executar como:</strong> Eu</li>
+                <li><strong>Quem tem acesso:</strong> Qualquer pessoa com o link</li>
+              </ul>
+            </li>
+            <li>Clique em <span class="highlight">"Implantar"</span></li>
+            <li><strong>COPIE E GUARDE O LINK</strong> que aparecer - esse é o endereço do seu sistema!</li>
+          </ol>
+        </div>
+
+        <div class="tip">
+
+          <h4>DICA IMPORTANTE:</h4>
+          <p>Salve o link do seu sistema nos favoritos do navegador ou anote em algum lugar seguro. Esse será o endereço que você usará para acessar seu sistema de estoque sempre.</p>
+        </div>
+
+      </div>
+    </section>
+<!-- Seção 2B: Instalação no Celular -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">◉</div>
+        <h2>PASSO 1B: Instalação no Celular</h2>
+      </div>
+      <div class="section-content">
+        
+        <div class="warning">
+          <h4>IMPORTANTE - Antes de começar:</h4>
+          <p>A instalação no celular é mais simples que no desktop. Você vai criar o mesmo sistema, mas com interface otimizada para smartphone.</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">1</span>Baixar os arquivos mobile</h3>
+          <p>Use o botão "Baixar Versão Mobile" no topo desta página</p>
+          <p>Extraia os arquivos em uma pasta no seu computador (você ainda precisará do computador para a configuração inicial)</p>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2</span>Configurar no Google Apps Script</h3>
+          <ol>
+            <li>Entre no <a href="https://script.google.com" target="_blank" class="highlight">script.google.com</a></li>
+            <li>Crie um <span class="highlight">"Novo projeto"</span></li>
+            <li>Apague o código padrão e cole o conteúdo do arquivo <span class="highlight">Codigo.gs</span> da versão mobile</li>
+            <li>Adicione um novo arquivo HTML:
+              <ul>
+                <li>Clique no ícone <span class="highlight">"+"</span> ao lado de "Arquivos"</li>
+                <li>Selecione <span class="highlight">"Arquivo HTML"</span></li>
+                <li>Nome do arquivo: <span class="highlight">index</span></li>
+                <li>Apague o conteúdo padrão</li>
+                <li>Cole o conteúdo do arquivo <span class="highlight">index.html</span> da versão mobile</li>
+              </ul>
+            </li>
+            <li>Salve o projeto com um nome como <span class="highlight">"Sistema Estoque Mobile - [Seu Nome]"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">3</span>Autorizar o sistema mobile</h3>
+          <ol>
+            <li>No código principal, encontre a função <span class="highlight">testarSistema</span></li>
+            <li>Clique em <span class="highlight">"Executar"</span></li>
+            <li><strong>IMPORTANTE:</strong> Vai pedir permissões - clique em <span class="highlight">"Autorizar"</span></li>
+            <li>Se aparecer "App não verificado", clique em <span class="highlight">"Avançado"</span></li>
+            <li>Depois clique em <span class="highlight">"Ir para [nome do projeto mobile]"</span></li>
+            <li>Clique em <span class="highlight">"Permitir"</span></li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4</span>Publicar o sistema mobile</h3>
+          <ol>
+            <li>Clique em <span class="highlight">"Implantar"</span> (canto superior direito)</li>
+            <li>Selecione <span class="highlight">"Nova implantação"</span></li>
+            <li>Clique no ícone de engrenagem e escolha <span class="highlight">"Aplicativo da Web"</span></li>
+            <li>Configurações:
+              <ul>
+                <li><strong>Executar como:</strong> Eu</li>
+                <li><strong>Quem tem acesso:</strong> Qualquer pessoa com o link</li>
+              </ul>
+            </li>
+            <li>Clique em <span class="highlight">"Implantar"</span></li>
+            <li><strong>COPIE E GUARDE O LINK MOBILE</strong> - esse é o endereço da sua versão celular!</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">5</span>Acessar no celular</h3>
+          <ol>
+            <li>Copie o link do seu sistema mobile</li>
+            <li>Abra o link no navegador do seu celular</li>
+            <li>O sistema se adaptará automaticamente à tela pequena</li>
+            <li>Salve o link nos favoritos para acesso rápido</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4</span>Instalar como aplicativo (opcional)</h3>
+          <p><strong>No Android:</strong></p>
+          <ol>
+            <li>Abra o sistema no Chrome</li>
+            <li>Toque nos 3 pontinhos no canto superior</li>
+            <li>Selecione <span class="highlight">"Adicionar à tela inicial"</span></li>
+            <li>Confirme a instalação</li>
+          </ol>
+          <p><strong>No iPhone:</strong></p>
+          <ol>
+            <li>Abra o sistema no Safari</li>
+            <li>Toque no ícone de compartilhar</li>
+            <li>Selecione <span class="highlight">"Adicionar à Tela de Início"</span></li>
+            <li>Confirme a adição</li>
+          </ol>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Diferenças da Versão Mobile</h4>
+            <ul>
+              <li><strong>Interface otimizada:</strong> Botões maiores para toque</li>
+              <li><strong>Layout vertical:</strong> Formulários em coluna única</li>
+              <li><strong>Navegação simplificada:</strong> Foco nas funções essenciais</li>
+              <li><strong>Carregamento rápido:</strong> Código otimizado para 3G/4G</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Funcionalidades Incluídas</h4>
+            <ul>
+              <li>Cadastrar produtos rapidamente</li>
+              <li>Registrar vendas na hora</li>
+              <li>Consultar estoque em tempo real</li>
+              <li>Ver produtos em baixa</li>
+              <li>Fazer entradas de mercadoria</li>
+              <li>Ajustar quantidades</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip">
+          <h4>DICA IMPORTANTE:</h4>
+          <p>Você pode ter tanto a versão desktop quanto a mobile funcionando ao mesmo tempo. Elas acessam a mesma planilha no Google Drive, então os dados ficam sempre sincronizados!</p>
+        </div>
+
+        <div class="example">
+          <h4>EXEMPLO de Uso no Dia a Dia:</h4>
+          <p><strong>Manhã:</strong> Verificar produtos em baixa no celular</p>
+          <p><strong>Durante o dia:</strong> Registrar vendas no celular</p>
+          <p><strong>Fim do expediente:</strong> Fazer relatórios no desktop</p>
+        </div>
+
+      </div>
+    </section>    
+
+    <!-- Seção 3: Primeiros Passos -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">►</div>
+        <h2>PASSO 2: Primeiros Passos</h2>
+      </div>
+      <div class="section-content">
+        
+        <div class="step">
+          <h3><span class="step-number">1</span>Primeiro acesso</h3>
+          <p>Abra o link do seu sistema no navegador. Na primeira vez, o sistema irá:</p>
+          <ul>
+            <li>Criar automaticamente uma planilha no seu Google Drive</li>
+            <li>Configurar todas as abas necessárias</li>
+            <li>Preparar o sistema para uso</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2</span>Entendendo a tela inicial</h3>
+          <div class="grid">
+            <div class="card">
+              <h4>Painel de Estatísticas</h4>
+              <ul>
+                <li><strong>Total de Produtos:</strong> Quantos itens diferentes você tem cadastrados</li>
+                <li><strong>Valor em Estoque:</strong> Quanto dinheiro está "parado" em mercadoria</li>
+                <li><strong>Produtos em Baixa:</strong> Quantos estão acabando (precisa repor)</li>
+                <li><strong>Categorias:</strong> Tipos de produto que você trabalha</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Adicionar Produto</h4>
+              <p>Formulário do lado esquerdo para cadastrar novos produtos no seu estoque</p>
+            </div>
+            <div class="card">
+              <h4>Movimentação</h4>
+              <p>Formulário do lado direito para registrar entradas, saídas e ajustes de estoque</p>
+            </div>
+            <div class="card">
+              <h4>Lista de Produtos</h4>
+              <p>Tabela na parte inferior mostrando todo o seu estoque atual com filtros</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 4: Cadastrando Produtos -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">+</div>
+        <h2>PASSO 3: Cadastrando Seus Produtos</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="example">
+          <h4>EXEMPLO PRÁTICO: Cadastrar "Arroz 5kg"</h4>
+          <p>Vamos cadastrar seu primeiro produto passo a passo:</p>
+          <ol>
+            <li><strong>Nome:</strong> Arroz 5kg Tio João</li>
+            <li><strong>Categoria:</strong> Alimentação</li>
+            <li><strong>Quantidade:</strong> 10 (quantos você tem agora na loja)</li>
+            <li><strong>Preço Compra:</strong> 4,50 (quanto você pagou por unidade)</li>
+            <li><strong>Preço Venda:</strong> 6,00 (quanto você cobra do cliente)</li>
+            <li><strong>Estoque Mínimo:</strong> 2 (quando avisar que está acabando)</li>
+          </ol>
+          <p>Depois clique em <span class="highlight">"Adicionar Produto"</span></p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Nome do Produto</h4>
+            <p><strong>Seja específico:</strong></p>
+            <ul>
+              <li>❌ "Arroz"</li>
+              <li>✅ "Arroz 5kg Tio João"</li>
+              <li>✅ "Detergente 500ml Ypê Neutro"</li>
+              <li>✅ "Refrigerante 2L Coca-Cola"</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h4>Categorias Sugeridas</h4>
+            <ul>
+              <li><strong>Alimentação:</strong> arroz, feijão, óleo, biscoito</li>
+              <li><strong>Bebidas:</strong> refrigerante, água, cerveja, suco</li>
+              <li><strong>Limpeza:</strong> detergente, sabão, desinfetante</li>
+              <li><strong>Higiene:</strong> shampoo, sabonete, pasta de dente</li>
+              <li><strong>Outros:</strong> pilhas, carregadores, etc.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Preços</h4>
+            <p><strong>Preço de Compra:</strong> Quanto você pagou no fornecedor</p>
+            <p><strong>Preço de Venda:</strong> Quanto você cobra do cliente</p>
+            <p><strong>Dica:</strong> Use ponto ou vírgula para separar os centavos (4.50 ou 4,50)</p>
+          </div>
+
+          <div class="card">
+            <h4>Estoque Mínimo</h4>
+            <p>Quando chegar nessa quantidade, o sistema vai avisar que precisa comprar mais.</p>
+            <p><strong>Sugestão:</strong></p>
+            <ul>
+              <li>Produtos que vendem rápido: 3-5 unidades</li>
+              <li>Produtos que vendem devagar: 1-2 unidades</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 5: Movimentação -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">⟲</div>
+        <h2>PASSO 4: Registrando Movimentações</h2>
+      </div>
+      <div class="section-content">
+
+        <p>Toda vez que entra ou sai produto do seu estoque, você deve registrar. Isso mantém o controle sempre correto.</p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>ENTRADA</h4>
+            <p><strong>Quando usar:</strong> Chegou mercadoria nova</p>
+            <div class="example">
+              <p><strong>Exemplo:</strong></p>
+              <ul>
+                <li>Produto: Arroz 5kg Tio João</li>
+                <li>Tipo: Entrada</li>
+                <li>Quantidade: 5 (chegaram mais 5 unidades)</li>
+                <li>Observações: "Compra da semana"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>SAÍDA</h4>
+            <p><strong>Quando usar:</strong> Vendeu algum produto</p>
+            <div class="example">
+              <p><strong>Exemplo:</strong></p>
+              <ul>
+                <li>Produto: Refrigerante 2L Coca</li>
+                <li>Tipo: Saída</li>
+                <li>Quantidade: 3 (vendeu 3 unidades)</li>
+                <li>Observações: "Venda para dona Maria"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>AJUSTE</h4>
+            <p><strong>Quando usar:</strong> Corrigir o estoque</p>
+            <div class="example">
+              <p><strong>Exemplo:</strong></p>
+              <ul>
+                <li>Produto: Detergente 500ml</li>
+                <li>Tipo: Ajuste</li>
+                <li>Quantidade: 8 (quantidade correta total)</li>
+                <li>Observações: "Acerto após inventário"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning">
+          <h4>IMPORTANTE sobre Saídas:</h4>
+          <p>O sistema não deixa você fazer uma saída que deixaria o estoque negativo. Se isso acontecer, verifique se a quantidade do produto está correta no sistema.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 6: Entendendo as Planilhas -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">▦</div>
+        <h2>PASSO 5: Entendendo as Planilhas do Google Sheets</h2>
+      </div>
+      <div class="section-content">
+
+        <p>Clicando em <span class="highlight">"Abrir Planilha"</span> você vai para o Google Sheets, onde pode ver todos os dados em detalhes:</p>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Aba "Produtos"</h4>
+            <p>Aqui ficam todos os seus produtos cadastrados com:</p>
+            <ul>
+              <li>ID único de cada produto</li>
+              <li>Nome, categoria, quantidade atual</li>
+              <li>Preços de compra e venda</li>
+              <li>Estoque mínimo</li>
+              <li>Data de cadastro e última atualização</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Aba "Movimentacoes"</h4>
+            <p>Histórico completo de tudo que aconteceu:</p>
+            <ul>
+              <li>Data e hora de cada movimentação</li>
+              <li>Produto que foi movimentado</li>
+              <li>Tipo (entrada/saída/ajuste)</li>
+              <li>Quantidade movimentada</li>
+              <li>Observações que você colocou</li>
+              <li>Usuário que fez a movimentação</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Aba "Fechamentos"</h4>
+            <p>Relatório mensal automático com:</p>
+            <ul>
+              <li>Mês do fechamento</li>
+              <li>Total de produtos naquele momento</li>
+              <li>Valor total em estoque (R$)</li>
+              <li>Quantos produtos estavam em baixa</li>
+              <li>Número de categorias</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Aba "Configuracoes"</h4>
+            <p>Controles internos do sistema:</p>
+            <ul>
+              <li>Próximo ID de produto</li>
+              <li>Próximo ID de movimentação</li>
+              <li>Data de criação do sistema</li>
+              <li>Versão do sistema</li>
+            </ul>
+            <div class="warning" style="margin-top: 15px; padding: 15px;">
+              <strong>NÃO MEXA NESTA ABA!</strong> Ela controla o funcionamento do sistema.
+            </div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <h4>O que você pode fazer no Google Sheets:</h4>
+          <ul>
+            <li>Criar gráficos com seus dados</li>
+            <li>Fazer relatórios personalizados</li>
+            <li>Imprimir listas de produtos</li>
+            <li>Exportar dados para backup</li>
+            <li>Compartilhar com sócios ou funcionários</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 7: Usando o Sistema no Dia a Dia -->
+    <section class="section">
+      <div class="section-header">
+        <h2>PASSO 6: Usando o Sistema no Dia a Dia</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="step">
+          <h3><span class="step-number">1</span>Rotina da Manhã</h3>
+          <ol>
+            <li>Abra o sistema no seu celular</li>
+            <li>Verifique se tem produtos em baixa (aparecem em vermelho)</li>
+            <li>Anote quais produtos precisa comprar</li>
+            <li>Clique em "Atualizar" para ter os dados mais recentes</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2</span>Quando Chegar Mercadoria</h3>
+          <ol>
+            <li>Conte os produtos que chegaram</li>
+            <li>No sistema, vá em "Movimentação"</li>
+            <li>Para cada produto, registre uma "Entrada"</li>
+            <li>Coloque observações como "Compra do atacado" ou "Fornecedor João"</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">3</span>A Cada Venda</h3>
+          <p>Você pode escolher uma das opções:</p>
+          <ul>
+            <li><strong>Opção 1:</strong> Registrar na hora de cada venda (mais preciso)</li>
+            <li><strong>Opção 2:</strong> Anotar as vendas e registrar no final do dia</li>
+            <li><strong>Opção 3:</strong> Fazer um "inventário rápido" no final do dia e ajustar</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">4</span>Final do Dia</h3>
+          <ol>
+            <li>Registre todas as vendas do dia (se ainda não fez)</li>
+            <li>Verifique se apareceram novos produtos em baixa</li>
+            <li>Anote mentalmente quais produtos venderam mais</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">5</span>Final do Mês</h3>
+          <ol>
+            <li>Clique em "Fechamento do Mês"</li>
+            <li>O sistema salva um "retrato" do seu estoque naquele momento</li>
+            <li>Compare com o mês anterior para ver o crescimento</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 8: Filtros e Busca -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">⌕</div>
+        <h2>PASSO 7: Encontrando Produtos Rapidamente</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="grid">
+          <div class="card">
+            <h4>Filtro por Nome</h4>
+            <p>Digite qualquer parte do nome do produto:</p>
+            <ul>
+              <li>Digite "coca" para encontrar "Refrigerante 2L Coca-Cola"</li>
+              <li>Digite "5kg" para encontrar todos os produtos de 5kg</li>
+              <li>Digite "tio joão" para encontrar produtos dessa marca</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Filtro por Categoria</h4>
+            <p>Selecione uma categoria para ver apenas:</p>
+            <ul>
+              <li>Todos os produtos de Alimentação</li>
+              <li>Apenas as Bebidas</li>
+              <li>Só produtos de Limpeza</li>
+              <li>Etc.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Identificar Status</h4>
+            <p>Na coluna "Status" você vê:</p>
+            <ul>
+              <li><span class="highlight" style="background: #E7F5EC; color: #166534;">OK</span> - Produto com estoque normal</li>
+              <li><span class="highlight" style="background: #FDE2E1; color: #B42318;">Baixo</span> - Produto acabando, precisa repor!</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Botão Atualizar</h4>
+            <p>Sempre que quiser dados mais recentes:</p>
+            <ul>
+              <li>Clique em "Atualizar"</li>
+              <li>O sistema busca as informações mais atuais</li>
+              <li>Útil quando várias pessoas usam o sistema</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 9: Dicas Importantes -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">★</div>
+        <h2>PASSO 8: Dicas para o Sucesso</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="grid">
+          <div class="card">
+            <h4>SEMPRE FAÇA</h4>
+            <ul>
+              <li>Registre TODAS as entradas e saídas</li>
+              <li>Mantenha os preços sempre atualizados</li>
+              <li>Faça o fechamento mensal</li>
+              <li>Verifique produtos em baixa diariamente</li>
+              <li>Use nomes específicos para os produtos</li>
+              <li>Mantenha backup da planilha</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>EVITE FAZER</h4>
+            <ul>
+              <li>Mexer na aba "Configurações"</li>
+              <li>Apagar produtos que já tiveram vendas</li>
+              <li>Esquecer de registrar movimentações</li>
+              <li>Deixar preços zerados</li>
+              <li>Usar nomes genéricos ("refrigerante")</li>
+              <li>Ignorar alertas de estoque baixo</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>COMO DEFINIR PREÇOS</h4>
+            <ul>
+              <li><strong>Preço de Compra:</strong> Exatamente o que você pagou</li>
+              <li><strong>Preço de Venda:</strong> Inclua impostos + lucro</li>
+              <li><strong>Margem sugerida:</strong> 30-50% sobre o preço de compra</li>
+              <li><strong>Exemplo:</strong> Comprou por R$ 4,00 → Venda R$ 6,00</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>COMO DEFINIR ESTOQUE MÍNIMO</h4>
+            <ul>
+              <li><strong>Produtos populares:</strong> 3-5 dias de venda</li>
+              <li><strong>Produtos normais:</strong> 1-2 semanas</li>
+              <li><strong>Produtos sazonais:</strong> Conforme a época</li>
+              <li><strong>Exemplo:</strong> Vende 2 por dia → Mínimo = 6</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip">
+          <h4>DICA DE OURO para Crescer:</h4>
+          <p>Use os relatórios mensais para identificar:</p>
+          <ul>
+            <li>Quais produtos vendem mais (compre mais deles)</li>
+            <li>Quais produtos vendem menos (talvez não vale a pena)</li>
+            <li>Se o valor do seu estoque está crescendo mês a mês</li>
+            <li>Se você está tendo lucro real</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 10: Resolução de Problemas -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">⚙</div>
+        <h2>PASSO 9: Resolução de Problemas</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="grid">
+          <div class="card">
+            <h4>Sistema não carrega</h4>
+            <p><strong>Possíveis causas:</strong></p>
+            <ul>
+              <li>Internet lenta ou instável</li>
+              <li>Precisa autorizar novamente</li>
+              <li>Cache do navegador</li>
+            </ul>
+            <p><strong>Soluções:</strong></p>
+            <ol>
+              <li>Verifique sua conexão</li>
+              <li>Atualize a página (F5)</li>
+              <li>Limpe o cache do navegador</li>
+              <li>Tente em outro navegador</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h4>Números não batem</h4>
+            <p><strong>Possíveis causas:</strong></p>
+            <ul>
+              <li>Esqueceu de registrar algumas vendas</li>
+              <li>Registrou quantidade errada</li>
+              <li>Produto foi perdido/quebrado</li>
+            </ul>
+            <p><strong>Soluções:</strong></p>
+            <ol>
+              <li>Conte fisicamente o produto</li>
+              <li>Use "Ajuste" para corrigir</li>
+              <li>Coloque observação explicando o ajuste</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h4>Não consegue fazer saída</h4>
+            <p><strong>Causa:</strong> Não tem produto suficiente no estoque</p>
+            <p><strong>Soluções:</strong></p>
+            <ol>
+              <li>Verifique se a quantidade no sistema está certa</li>
+              <li>Se necessário, faça um ajuste primeiro</li>
+              <li>Depois registre a saída</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h4>Perdeu acesso ao sistema</h4>
+            <p><strong>Soluções:</strong></p>
+            <ol>
+              <li>Procure o link nos favoritos do navegador</li>
+              <li>Entre no Google Drive e procure "Estoque_Prospera_Rio"</li>
+              <li>Se necessário, refaça a implantação no Apps Script</li>
+              <li>Entre em contato conosco</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="warning">
+          <h4>Se nada funcionar:</h4>
+          <p>1. Respire fundo - seus dados estão seguros no Google Drive</p>
+          <p>2. Procure a planilha "Estoque_Prospera_Rio" no seu Drive</p>
+          <p>3. Anote os problemas que está enfrentando</p>
+          <p>4. Entre em contato conosco pelo WhatsApp ou email</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 11: Backup e Segurança -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">◎</div>
+        <h2>PASSO 10: Backup e Segurança</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="grid">
+          <div class="card">
+            <h4>Como Fazer Backup</h4>
+            <ol>
+              <li>Clique em "Abrir Planilha"</li>
+              <li>No Google Sheets, vá em Arquivo → Download</li>
+              <li>Escolha "Microsoft Excel (.xlsx)"</li>
+              <li>Salve em um local seguro (pendrive, nuvem, etc.)</li>
+              <li>Faça isso pelo menos uma vez por mês</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h4>Segurança dos Dados</h4>
+            <ul>
+              <li>Seus dados ficam no Google Drive (muito seguro)</li>
+              <li>Não compartilhe o link do sistema</li>
+              <li>Se precisar dar acesso a funcionários, compartilhe só a planilha</li>
+              <li>Mude a senha do Gmail regularmente</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>Compartilhar com Funcionários</h4>
+            <ol>
+              <li>Abra a planilha no Google Sheets</li>
+              <li>Clique em "Compartilhar" (canto superior direito)</li>
+              <li>Digite o email do funcionário</li>
+              <li>Escolha: "Editor" (pode mexer) ou "Visualizador" (só ver)</li>
+              <li><strong>Não dê acesso ao Apps Script!</strong></li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h4>Restaurar Backup</h4>
+            <p>Se precisar restaurar dados antigos:</p>
+            <ol>
+              <li>Vá no Google Drive</li>
+              <li>Clique em "Novo" → "Upload de arquivo"</li>
+              <li>Selecione seu arquivo de backup</li>
+              <li>Copie os dados para a planilha atual</li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 12: Melhorando o Negócio -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">▲</div>
+        <h2>PASSO 11: Usando os Dados para Crescer</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="step">
+          <h3><span class="step-number">1</span>Análise Mensal</h3>
+          <p>Todo mês, após o fechamento, analise:</p>
+          <ul>
+            <li>O valor do estoque cresceu comparado ao mês passado?</li>
+            <li>Quantos produtos novos você adicionou?</li>
+            <li>Quais categorias estão vendendo mais?</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">2</span>Identificar Oportunidades</h3>
+          <p>Use o histórico de movimentações para descobrir:</p>
+          <ul>
+            <li><strong>Produtos que vendem rápido:</strong> Compre mais, negocie melhor preço</li>
+            <li><strong>Produtos que vendem devagar:</strong> Considere promoções ou não repor</li>
+            <li><strong>Horários de maior movimento:</strong> Para estar sempre disponível</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3><span class="step-number">3</span>Planejamento Financeiro</h3>
+          <p>Com os dados do sistema você pode:</p>
+          <ul>
+            <li>Calcular quanto lucro teve no mês</li>
+            <li>Saber quanto dinheiro está "parado" em estoque</li>
+            <li>Planejar compras com base no giro dos produtos</li>
+            <li>Negociar com fornecedores baseado no volume</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <h4>Exemplo de Análise Mensal:</h4>
+          <p><strong>Janeiro:</strong> 150 produtos, R$ 5.000 em estoque</p>
+          <p><strong>Fevereiro:</strong> 180 produtos, R$ 6.200 em estoque</p>
+          <p><strong>Conclusão:</strong> Cresceu 20% em produtos e 24% em valor - negócio está indo bem!</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Seção 13: Certificado -->
+    <section class="section">
+      <div class="section-header">
+        <div class="icon">◆</div>
+        <h2>CERTIFICADO DE CONCLUSÃO</h2>
+      </div>
+      <div class="section-content">
+        <p style="text-align: center; font-size: 22px; margin-bottom: 30px;">
+          Após completar todos os passos deste tutorial, você pode gerar seu certificado oficial de conclusão do curso.
+        </p>
+        
+        <div style="text-align: center;">
+          <a href="certificado.html" class="download-btn" style="display: inline-block; padding: 20px 40px; font-size: 20px; text-decoration: none;">
+            Gerar Meu Certificado
+          </a>
+        </div>
+        
+        <div class="tip" style="margin-top: 30px;">
+          <h4>O certificado comprova que você domina:</h4>
+          <ul>
+            <li>Instalação e configuração do sistema</li>
+            <li>Cadastro e gestão de produtos</li>
+            <li>Controle de movimentações de estoque</li>
+            <li>Análise de relatórios e indicadores</li>
+            <li>Estratégias para crescimento do negócio</li>
+            <li>Backup e segurança de dados</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <h3>Parabéns! Você está pronto!</h3>
+    <p>Agora você tem um sistema profissional de controle de estoque,<br>
+    igual às grandes empresas usam!</p>
+    
+    <div class="tip" style="margin: 30px auto; max-width: 600px; background: rgba(255,255,255,0.1); border-color: var(--amarelo-acento);">
+      <h4>LEMBRE-SE:</h4>
+      <p>O segredo do sucesso é usar o sistema TODOS OS DIAS. Empresas que controlam bem o estoque crescem mais rápido e têm mais lucro!</p>
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--azul-principal);">
+      <h4 style="color: var(--amarelo-acento); margin-bottom: 15px;">Precisa de Ajuda?</h4>
+      <p><strong>WhatsApp:</strong> (21)  97515-0995</p>
+      <p><strong>Email:</strong> casaprosperamare@gmail.com</p>
+      <p><strong>Site:</strong> www.institutobrarte.org</p>
+    </div>
+
+    <div style="margin-top: 30px; font-size: 16px; opacity: 0.8;">
+      <p>Sistema desenvolvido especialmente para empreendedores da <strong>Maré</strong> e <strong>Jacarezinho</strong></p>
+      <p style="margin-top: 10px;"><strong>Prospera Rio</strong> - Impulsionando o empreendedorismo local</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll para links internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Adicionar animação de entrada aos cards
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Aplicar animação aos elementos
+document.querySelectorAll('.card, .step, .section').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+
+// Destacar seções conforme o scroll
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('.section');
+  const scrollPos = window.pageYOffset + 100;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      section.style.borderLeft = '6px solid var(--azul-secundaria)';
+    } else {
+      section.style.borderLeft = 'none';
+    }
+  });
+});
+
+// Contador animado para estatísticas (se houver)
+function animateNumbers() {
+  const numbers = document.querySelectorAll('.stat-number');
+  numbers.forEach(num => {
+    const final = parseInt(num.textContent);
+    const duration = 2000;
+    const step = final / (duration / 16);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= final) {
+        current = final;
+        clearInterval(timer);
+      }
+      num.textContent = Math.floor(current);
+    }, 16);
+  });
+}
+
+// Inicializar animações quando a página carrega
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(animateNumbers, 1000);
+});
+</script>
+
+</body>
+</html>
